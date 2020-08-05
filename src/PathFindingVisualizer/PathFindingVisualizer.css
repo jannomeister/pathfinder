@@ -1,0 +1,13 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(50, 1fr);
+  padding: 10px;
+  margin: 0 auto;
+  width: min-content;
+}
+
+button {
+  background-color: #eee;
+  font-size: 20px;
+  margin: 5px;
+}
