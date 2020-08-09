@@ -9,9 +9,10 @@ const Node = props => {
     isStart,
     isFinish,
     isWall,
-    onMouseDown,
-    onMouseEnter,
-    onMouseUp,
+    // isVisited,
+    // onMouseDown,
+    // onMouseEnter,
+    // onMouseUp,
     onClick,
   } = props;
 
@@ -24,16 +25,16 @@ const Node = props => {
     : "";
 
   return (
-    <div
+    <td
       id={`node-${row}-${col}`}
       className={`grid-item ${extraClassName}`}
       // onMouseDown={() => onMouseDown(row, col)}
       // onMouseEnter={() => onMouseEnter(row, col)}
       // onMouseUp={onMouseUp}
       onClick={() => onClick(row, col)}>
-      { isStart && <img src={require("../../assets/start.png")} width={15} height={15} /> }
-      { isFinish && <img src={require("../../assets/finish.png")} width={15} height={15} /> }
-    </div>
+      { isStart && <img src={require("../../assets/start.png")} alt="" width={15} height={15} /> }
+      { isFinish && <img src={require("../../assets/finish.png")} alt="" width={15} height={15} /> }
+    </td>
   )
 }
 

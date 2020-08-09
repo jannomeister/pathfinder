@@ -17,10 +17,14 @@ const _getNode = (col, row) => {
     row,
     distance: Infinity,
     previousNode: null,
-    isStart: false,//row === START.row && col === START.col,
-    isFinish: false,//row === FINISH.row && col === FINISH.col,
+    isStart: false,
+    isFinish: false,
     isVisited: false,
     isWall: false,
+    f: 0, // for A* algorithm
+    g: 0, // for A* algorithm
+    h: 0, // for A* algorithm
+    closed: false // for A* algorithm
   };
 }
 
@@ -155,10 +159,43 @@ function generateWalls(height, width) {
   return out;
 };
 
+const findNeighbors = (grid, row, col) => {
+  const neighbors = [];
+  if (row > 0) neighbors.push(grid[row - 1][col]);
+  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
+  if (col > 0) neighbors.push(grid[row][col - 1]);
+  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+  return neighbors.filter(neighbor => !neighbor.isVisited);
+
+  // TODO: support diagonal
+  // const getNeighbors = (grid, { row, col }) => {
+  //   const ret = [];
+
+  //   if (grid[row] && grid[row][col - 1]) ret.push(grid[row][col - 1]); // WEST
+  //   if (grid[row] && grid[row][col + 1]) ret.push(grid[row][col + 1]); // EAST
+  //   if (grid[row + 1] && grid[row + 1][col]) ret.push(grid[row + 1][col]); // SOUTH
+  //   if (grid[row - 1] && grid[row - 1][col]) ret.push(grid[row - 1][col]); // NORTH
+
+  //   return ret;
+  // }
+}
+
+const getShortestPath = (finish) => {
+  const nodesInShortestPathOrder = [];
+  let currentNode = finish;
+  while (currentNode !== null) {
+    nodesInShortestPathOrder.unshift(currentNode);
+    currentNode = currentNode.previousNode;
+  }
+  return nodesInShortestPathOrder;
+}
+
 export {
   getInitialGrid,
   getNewGridWithWallToggled,
   getNewGridWithStart,
   getNewGridWithEnd,
   generateMaze,
+  findNeighbors,
+  getShortestPath,
 }
