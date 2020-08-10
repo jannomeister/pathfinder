@@ -159,25 +159,22 @@ function generateWalls(height, width) {
   return out;
 };
 
-const findNeighbors = (grid, row, col) => {
+const findNeighbors = (grid, row, col, diagonal) => {
   const neighbors = [];
-  if (row > 0) neighbors.push(grid[row - 1][col]);
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
-  if (col > 0) neighbors.push(grid[row][col - 1]);
-  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+  if (grid[row] && grid[row][col - 1]) neighbors.push(grid[row][col - 1]); // WEST
+  if (grid[row - 1] && grid[row - 1][col]) neighbors.push(grid[row - 1][col]); // NORTH
+  if (grid[row] && grid[row][col + 1]) neighbors.push(grid[row][col + 1]); // EAST
+  if (grid[row + 1] && grid[row + 1][col]) neighbors.push(grid[row + 1][col]); // SOUTH
+
+  // allow diagonal support
+  if (diagonal) {
+    if (grid[row - 1] && grid[row - 1][col - 1]) neighbors.push(grid[row - 1][col - 1]); // NORTHWEST
+    if (grid[row - 1] && grid[row - 1][col + 1]) neighbors.push(grid[row - 1][col + 1]); // NORTHEAST
+    if (grid[row + 1] && grid[row + 1][col + 1]) neighbors.push(grid[row + 1][col + 1]); // SOUTHEAST
+    if (grid[row + 1] && grid[row + 1][col - 1]) neighbors.push(grid[row + 1][col - 1]); // SOUTHWEST
+  }
+
   return neighbors.filter(neighbor => !neighbor.isVisited);
-
-  // TODO: support diagonal
-  // const getNeighbors = (grid, { row, col }) => {
-  //   const ret = [];
-
-  //   if (grid[row] && grid[row][col - 1]) ret.push(grid[row][col - 1]); // WEST
-  //   if (grid[row] && grid[row][col + 1]) ret.push(grid[row][col + 1]); // EAST
-  //   if (grid[row + 1] && grid[row + 1][col]) ret.push(grid[row + 1][col]); // SOUTH
-  //   if (grid[row - 1] && grid[row - 1][col]) ret.push(grid[row - 1][col]); // NORTH
-
-  //   return ret;
-  // }
 }
 
 const getShortestPath = (finish) => {

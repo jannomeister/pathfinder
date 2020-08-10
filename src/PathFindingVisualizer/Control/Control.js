@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import DiagonalOption from './DiagonalOption/DiagonalOption';
+import Heuristic from './Heuristic/Heuristic';
 
 // import FormControl from '@material-ui/core/FormControl';
 // import InputLabel from '@material-ui/core/InputLabel';
@@ -8,17 +10,19 @@ import Grid from '@material-ui/core/Grid';
 import Alert from '@material-ui/lab/Alert';
 // import Button from '@material-ui/core/Button';
 
-import './InfoTab.css';
+import './Control.css';
 
-const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
+const Control = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
   const [algorithm, setAlgorithm] = useState("");
+  const [heuristic, setHeuristic] = useState("manhattan");
+  const [isDiagonal, setIsDiagonal] = useState(false);
   const canVisualize = !start || !finish ? true : false;
   const canGenerate = !start || !finish ? true : false;
 
   const onVisualize = e => {
     e.preventDefault();
     if (algorithm) {
-      visualize(algorithm);
+      visualize(algorithm, heuristic, isDiagonal);
     }
   }
 
@@ -35,6 +39,14 @@ const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
           </select>
 
           <button disabled={canVisualize} onClick={onVisualize}>Visualize</button>
+
+          {algorithm === "astar" && (
+            <DiagonalOption isDiagonal={isDiagonal} onChange={e => setIsDiagonal(e.target.checked)} />
+          )}
+
+          {algorithm === "astar" && (
+            <Heuristic heuristic={heuristic} onChange={e => setHeuristic(e.target.value)} />
+          )}
         </form>
       </div>
       <div>
@@ -50,4 +62,4 @@ const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
   )
 }
 
-export default InfoTab;
+export default Control;

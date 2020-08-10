@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Board from './Board/Board';
-import InfoTab from './InfoTab/InfoTab';
+import Control from './Control/Control';
 import { getInitialGrid, getNewGridWithStart, getNewGridWithEnd, getNewGridWithWallToggled, generateMaze, getShortestPath } from '../config';
 import { dijkstra } from '../algorithms/dijkstra';
 import { breadthFirstSearch } from '../algorithms/breadthFirstSearch';
@@ -94,10 +94,10 @@ const PathFindingVisualizer = props => {
     }
   };
 
-  const visualizeAStar = () => {
+  const visualizeAStar = (heuristic, isDiagonal) => {
     const start = nodes[startNode.row][startNode.col];
     const finish = nodes[endNode.row][endNode.col];
-    const data = aStar(nodes, start, finish);
+    const data = aStar(nodes, start, finish, heuristic, isDiagonal);
     const newNodes = nodes.slice();
     const shortestPathData = getShortestPath(finish);
     for (let i = 0; i < data.length; i++) {
@@ -119,11 +119,11 @@ const PathFindingVisualizer = props => {
     setNodes(newNodes);
   }
 
-  const onVisualize = (algorithm) => {
+  const onVisualize = (algorithm, heuristic, isDiagonal) => {
     if (algorithm === "dijkstra") {
       visualizeDijkstra()
     } else if (algorithm === "astar") {
-      visualizeAStar();
+      visualizeAStar(heuristic, isDiagonal);
     } else if (algorithm === "BFS") {
       visualizeBFS();
     }
@@ -131,7 +131,6 @@ const PathFindingVisualizer = props => {
 
   const onGenerateMaze = () => {
     const newGrid = generateMaze(nodes, rows, cols);
-    console.log("newGrid: ", newGrid)
     setHasMaze(!hasMaze);
     setNodes(newGrid);
   }
@@ -160,7 +159,7 @@ const PathFindingVisualizer = props => {
           <Board nodes={nodes} onClick={onClick} />
         </Grid>
         <Grid container item xs={4}>
-          <InfoTab
+          <Control
             start={startNode}
             finish={endNode}
             hasMaze={hasMaze}
