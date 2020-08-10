@@ -39,14 +39,15 @@ const heuristic = {
   }
 }
 
-const aStar = (grid, start, finish) => {
+const aStar = (grid, start, finish, selectedHeuristic) => {
+  console.log("selectedHeuristic: ", selectedHeuristic)
   let closest = false;
 
   var openHeap = getHeap();
   var closestNode = start;
   var visited = [];
 
-  start.h = heuristic.manhattan(start, finish);
+  start.h = heuristic[selectedHeuristic](start, finish);
 
   openHeap.push(start);
   visited.push(start);

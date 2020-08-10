@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Heuristic from './Heuristic/Heuristic';
 
 // import FormControl from '@material-ui/core/FormControl';
 // import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +12,7 @@ import Alert from '@material-ui/lab/Alert';
 import './InfoTab.css';
 
 const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
+  const [heuristic, setHeuristic] = useState("manhattan");
   const [algorithm, setAlgorithm] = useState("");
   const canVisualize = !start || !finish ? true : false;
   const canGenerate = !start || !finish ? true : false;
@@ -18,7 +20,7 @@ const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
   const onVisualize = e => {
     e.preventDefault();
     if (algorithm) {
-      visualize(algorithm);
+      visualize(algorithm, heuristic);
     }
   }
 
@@ -35,6 +37,10 @@ const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
           </select>
 
           <button disabled={canVisualize} onClick={onVisualize}>Visualize</button>
+
+          {algorithm === "astar" && (
+            <Heuristic heuristic={heuristic} onChange={e => setHeuristic(e.target.value)} />
+          )}
         </form>
       </div>
       <div>

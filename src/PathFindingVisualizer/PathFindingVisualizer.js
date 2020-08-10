@@ -94,10 +94,10 @@ const PathFindingVisualizer = props => {
     }
   };
 
-  const visualizeAStar = () => {
+  const visualizeAStar = (heuristic) => {
     const start = nodes[startNode.row][startNode.col];
     const finish = nodes[endNode.row][endNode.col];
-    const data = aStar(nodes, start, finish);
+    const data = aStar(nodes, start, finish, heuristic);
     const newNodes = nodes.slice();
     const shortestPathData = getShortestPath(finish);
     for (let i = 0; i < data.length; i++) {
@@ -119,11 +119,11 @@ const PathFindingVisualizer = props => {
     setNodes(newNodes);
   }
 
-  const onVisualize = (algorithm) => {
+  const onVisualize = (algorithm, heuristic) => {
     if (algorithm === "dijkstra") {
       visualizeDijkstra()
     } else if (algorithm === "astar") {
-      visualizeAStar();
+      visualizeAStar(heuristic);
     } else if (algorithm === "BFS") {
       visualizeBFS();
     }
