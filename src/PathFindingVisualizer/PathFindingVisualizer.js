@@ -131,7 +131,6 @@ const PathFindingVisualizer = props => {
 
   const onGenerateMaze = () => {
     const newGrid = generateMaze(nodes, rows, cols);
-    console.log("newGrid: ", newGrid)
     setHasMaze(!hasMaze);
     setNodes(newGrid);
   }
