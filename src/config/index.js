@@ -159,7 +159,7 @@ function generateWalls(height, width) {
   return out;
 };
 
-const findNeighbors = (grid, row, col, diagonal = false) => {
+const findNeighbors = (grid, row, col, diagonal) => {
   const neighbors = [];
   if (grid[row] && grid[row][col - 1]) neighbors.push(grid[row][col - 1]); // WEST
   if (grid[row - 1] && grid[row - 1][col]) neighbors.push(grid[row - 1][col]); // NORTH

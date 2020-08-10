@@ -39,8 +39,7 @@ const heuristic = {
   }
 }
 
-const aStar = (grid, start, finish, selectedHeuristic) => {
-  console.log("selectedHeuristic: ", selectedHeuristic)
+const aStar = (grid, start, finish, selectedHeuristic, isDiagonal) => {
   let closest = false;
 
   var openHeap = getHeap();
@@ -66,7 +65,7 @@ const aStar = (grid, start, finish, selectedHeuristic) => {
     currentNode.closed = true;
 
     // Find all neighbors for the current node.
-    const neighbors = findNeighbors(grid, currentNode.row, currentNode.col);
+    const neighbors = findNeighbors(grid, currentNode.row, currentNode.col, isDiagonal);
 
     for (const neighbor of neighbors) {
       if (neighbor.closed || neighbor.isWall) {

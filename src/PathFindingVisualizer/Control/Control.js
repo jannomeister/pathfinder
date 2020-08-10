@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DiagonalOption from './DiagonalOption/DiagonalOption';
 import Heuristic from './Heuristic/Heuristic';
 
 // import FormControl from '@material-ui/core/FormControl';
@@ -12,15 +13,16 @@ import Alert from '@material-ui/lab/Alert';
 import './Control.css';
 
 const Control = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
-  const [heuristic, setHeuristic] = useState("manhattan");
   const [algorithm, setAlgorithm] = useState("");
+  const [heuristic, setHeuristic] = useState("manhattan");
+  const [isDiagonal, setIsDiagonal] = useState(false);
   const canVisualize = !start || !finish ? true : false;
   const canGenerate = !start || !finish ? true : false;
 
   const onVisualize = e => {
     e.preventDefault();
     if (algorithm) {
-      visualize(algorithm, heuristic);
+      visualize(algorithm, heuristic, isDiagonal);
     }
   }
 
@@ -37,6 +39,10 @@ const Control = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
           </select>
 
           <button disabled={canVisualize} onClick={onVisualize}>Visualize</button>
+
+          {algorithm === "astar" && (
+            <DiagonalOption isDiagonal={isDiagonal} onChange={e => setIsDiagonal(e.target.checked)} />
+          )}
 
           {algorithm === "astar" && (
             <Heuristic heuristic={heuristic} onChange={e => setHeuristic(e.target.value)} />
