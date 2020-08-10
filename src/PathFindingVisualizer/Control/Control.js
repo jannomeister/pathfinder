@@ -9,9 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Alert from '@material-ui/lab/Alert';
 // import Button from '@material-ui/core/Button';
 
-import './InfoTab.css';
+import './Control.css';
 
-const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
+const Control = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => {
   const [heuristic, setHeuristic] = useState("manhattan");
   const [algorithm, setAlgorithm] = useState("");
   const canVisualize = !start || !finish ? true : false;
@@ -56,4 +56,4 @@ const InfoTab = ({ start, finish, hasMaze, visualize, generateMaze, reset }) => 
   )
 }
 
-export default InfoTab;
+export default Control;
