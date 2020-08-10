@@ -1,11 +1,42 @@
 import { findNeighbors } from '../config';
 
-// TODO: add support for other heuristic
-// manhattan
-const heuristic = (neighbor, finish) => {
-  const d1 = Math.abs(neighbor.row - finish.row);
-  const d2 = Math.abs(neighbor.col - finish.col);
-  return d1 + d2;
+// check http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#heuristics-for-grid-maps
+const heuristic = {
+
+  // standard
+  manhattan: (node, goal) => Math.abs(node.row - goal.row) + Math.abs(node.col - goal.col),
+
+  // if diagonal search is considered
+  diagonalChebyshev: (node, goal) => {
+    const D = 1;
+    const D2 = 1;
+    const dx = Math.abs(node.row - goal.row);
+    const dy = Math.abs(node.col - goal.col);
+    return (dx + dy) + (D2 - 2 * D) * Math.min(dx, dy);
+  },
+
+  // if diagonal search is considered
+  diagonalOctile: (node, goal) => {
+    const D = 1;
+    const D2 = Math.sqrt(2);
+    const dx = Math.abs(node.row - goal.row);
+    const dy = Math.abs(node.col - goal.col);
+    return (dx + dy) + (D2 - 2 * D) * Math.min(dx, dy);
+  },
+
+  // not recommended because it will took longer A* search
+  euclidean: (node, goal) => {
+    const dx = Math.abs(node.row - goal.row);
+    const dy = Math.abs(node.col - goal.col);
+    return Math.sqrt(dx * dx + dy * dy);
+  },
+
+  // recommended if you plan to use euclidean
+  euclideanSquared: (node, goal) => {
+    const dx = Math.abs(node.row - goal.row);
+    const dy = Math.abs(node.col - goal.col);
+    return  dx * dx + dy * dy;
+  }
 }
 
 const aStar = (grid, start, finish) => {
@@ -15,7 +46,7 @@ const aStar = (grid, start, finish) => {
   var closestNode = start;
   var visited = [];
 
-  start.h = heuristic(start, finish);
+  start.h = heuristic.manhattan(start, finish);
 
   openHeap.push(start);
   visited.push(start);
@@ -51,7 +82,7 @@ const aStar = (grid, start, finish) => {
         visited.push(neighbor);
         neighbor.isVisited = true;
         neighbor.previousNode = currentNode;
-        neighbor.h = neighbor.h || heuristic(neighbor, finish);
+        neighbor.h = neighbor.h || heuristic.manhattan(neighbor, finish);
         neighbor.g = gScore;
         neighbor.f = neighbor.g + neighbor.h;
         if (closest) {
