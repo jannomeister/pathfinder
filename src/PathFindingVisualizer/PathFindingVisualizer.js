@@ -9,10 +9,14 @@ import { aStar } from '../algorithms/aStar';
 import './PathFindingVisualizer.css';
 
 // material
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 
-const DEFAULT_ROWS = 30;
-const DEFAULT_COLS = 30;
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+const DEFAULT_ROWS = 35;
+const DEFAULT_COLS = 35;
 
 const PathFindingVisualizer = props => {
   const [rows, setRows] = useState(DEFAULT_ROWS);
@@ -135,6 +139,24 @@ const PathFindingVisualizer = props => {
     setNodes(newGrid);
   }
 
+  const onClearPath = () => {
+    
+    const newGrid = nodes.slice();
+
+    for (let i = 0; i < newGrid.length; i++) {
+      for (let j = 0; j < newGrid[i].length; j++) {
+        const node = newGrid[i][j];
+        node.isWall = false;
+        node.isVisited = false;
+        document.getElementById(`node-${i}-${j}`).classList.remove("node-visited");
+        document.getElementById(`node-${i}-${j}`).classList.remove("node-shortest-path");
+      }
+    }
+
+    setHasMaze(!hasMaze);
+    setNodes(newGrid);
+  }
+
   const onReset = () => {
     setRows(DEFAULT_ROWS);
     setCols(DEFAULT_COLS);
@@ -153,23 +175,24 @@ const PathFindingVisualizer = props => {
   }
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '10px auto' }}>
-      <Grid container spacing={1} style={{ minWidth: '70%',  }}>
-        <Grid container item xs={8}>
+    <Container fluid>
+      <Row>
+        <Col xs={8}>
           <Board nodes={nodes} onClick={onClick} />
-        </Grid>
-        <Grid container item xs={4}>
+        </Col>
+        <Col xs={4}>
           <Control
             start={startNode}
             finish={endNode}
             hasMaze={hasMaze}
             visualize={onVisualize}
             generateMaze={onGenerateMaze}
+            clearPath={onClearPath}
             reset={onReset}
           /> 
-        </Grid>
-      </Grid>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
