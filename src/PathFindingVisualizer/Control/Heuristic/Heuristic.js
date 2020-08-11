@@ -1,70 +1,25 @@
 import React from 'react';
+import FormControl from 'react-bootstrap/FormControl';
+import Container from 'react-bootstrap/Container';
 
 import './Heuristic.css';
 
 const Heuristic = ({ heuristic, onChange }) => {
   return (
-    <div className="container">
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="manhattan"
-            checked={heuristic === "manhattan"}
-            onChange={onChange}
-          />
-          Manhattan Distance
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="diagonalChebyshev"
-            checked={heuristic === "diagonalChebyshev"}
-            onChange={onChange}
-          />
-          Chebyshev Distance
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="diagonalOctile"
-            checked={heuristic === "diagonalOctile"}
-            onChange={onChange}
-          />
-          Octile Distance
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="euclidean"
-            checked={heuristic === "euclidean"}
-            onChange={onChange}
-          />
-          Euclidean Distance
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="euclideanSquared"
-            checked={heuristic === "euclideanSquared"}
-            onChange={onChange}
-          />
-          Euclidean (Squared) Distance
-        </label>
-      </div>
-    </div>
+    <Container style={{ marginBottom: 10 }}>
+      <FormControl
+        as="select"
+        size="sm"
+        value={heuristic}
+        onChange={onChange}
+      >
+        <option value="manhattan">Manhattan</option>
+        <option value="diagonalChebyshev">Chebyshev Distance</option>
+        <option value="diagonalOctile">Octile Distance</option>
+        <option value="euclidean">Euclidean Distance</option>
+        <option value="euclideanSquared">Euclidean (Squared) Distance</option>
+      </FormControl>
+    </Container>
   )
 }
 

@@ -2,7 +2,7 @@
   width: 20px;
   height: 20px;
   font-size: 10px;
-  /* outline: 1px solid grey; */
+  outline: 1px solid #3FC1C9;
 }
 
 .node-finish {
@@ -11,10 +11,6 @@
 
 .node-start {
   /* background-color: green; */
-}
-
-.node-visited {
-  background-color: blue;
 }
 
 .node-visited {
@@ -30,7 +26,7 @@
 
 .node-wall {
   outline: none;
-  background-color: rgb(12, 53, 71);
+  background-color: #364F6B;
   /* animation-name: wallAnimation;
   animation-duration: 1.5s;
   animation-timing-function: ease-out;
@@ -103,16 +99,16 @@
 @keyframes shortestPath {
   0% {
     outline: none;
-    background-color: rgb(255, 254, 106);
+    background-color: #FC5185;
   }
 
   50% {
     outline: none;
-    background-color: rgb(255, 254, 106);
+    background-color: #FC5185;
   }
 
   100% {
     outline: none;
-    background-color: rgb(255, 254, 106);
+    background-color: #FC5185;
   }
 }
