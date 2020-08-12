@@ -175,7 +175,7 @@ const PathFindingVisualizer = props => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid style={{ maxWidth: 1200 }}>
       <Row>
         <Col xs={8}>
           <Board nodes={nodes} onClick={onClick} />
