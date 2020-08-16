@@ -60,6 +60,7 @@ const Control = ({ start, finish, hasMaze, visualize, generateMaze, clearPath, r
             <option value="dijkstra">Dijkstra</option>
             <option value="astar">A star</option>
             <option value="BFS">Breadth First Search</option>
+            <option value="DFS">Depth First Search</option>
           </FormControl>
         </Container>
 
