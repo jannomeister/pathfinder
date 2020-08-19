@@ -1,7 +1,7 @@
 {
   "homepage": "https://jannomeister.github.io/pathfinder",
   "name": "test-algorithm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
