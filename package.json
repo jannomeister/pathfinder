@@ -1,7 +1,7 @@
 {
   "homepage": "https://jannomeister.github.io/pathfinder",
   "name": "test-algorithm",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "husky": {
     "hooks": {
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "auto-changelog": "^2.2.1",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0"
   }
