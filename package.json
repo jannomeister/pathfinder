@@ -1,8 +1,14 @@
 {
-  "homepage": "https://jannomeister.github.io/pathfinder",
-  "name": "test-algorithm",
+  "name": "pathfinder",
   "version": "0.4.2",
-  "private": true,
+  "description": "A project for showing different kinds of pathfinding algorithms",
+  "engines": {
+    "node": ">=10.18",
+    "npm": ">=6",
+    "yarn": ">=1"
+  },
+  "author": "Janno Tabamo <jannotabamo@gmail.com> (https://resume.jannomeister.com)",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
@@ -48,5 +54,13 @@
     "auto-changelog": "^2.2.1",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jannomeister/pathfinder"
+  },
+  "bugs": {
+    "url": "https://github.com/jannomeister/pathfinder/issues"
+  },
+  "homepage": "https://jannomeister.github.io/pathfinder"
 }
