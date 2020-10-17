@@ -1,6 +1,6 @@
 {
   "name": "pathfinder",
-  "version": "0.4.2",
+  "version": "0.4.5",
   "description": "A project for showing different kinds of pathfinding algorithms",
   "engines": {
     "node": ">=10.18",
