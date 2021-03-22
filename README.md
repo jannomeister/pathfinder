@@ -1,6 +1,6 @@
 ## Pathfinder
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c074e70b-4158-41a6-b404-a018ebeb1507/deploy-status)](https://app.netlify.com/sites/jannomeister-pathfinder/deploys)
+![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=vercel.com/jannomeister/pathfinder)
 
 I made this project so that I can learn more about different kinds of pathfinding algorithms. Check the [online demo](https://jannomeister.github.io/pathfinder/)
 
