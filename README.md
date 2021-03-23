@@ -2,7 +2,7 @@
 
 ![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=vercel.com/jannomeister/pathfinder)
 
-I made this project so that I can learn more about different kinds of pathfinding algorithms. Check the [online demo](https://jannomeister.github.io/pathfinder/)
+I made this project so that I can learn more about different kinds of pathfinding algorithms. Check the [online demo](https://pathfinder.jannomeister.com)
 
 ## Available Algorithms
 
